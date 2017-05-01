@@ -11,5 +11,9 @@
 
     <artifactId>springboot</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>demo</module>
+        <module>mybatis</module>
+    </modules>
 
 </project>
