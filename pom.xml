@@ -10,7 +10,6 @@
     <modules>
         <module>springboot</module>
         <module>mysql</module>
-        <module>dubbo</module>
     </modules>
     <packaging>pom</packaging>
 
