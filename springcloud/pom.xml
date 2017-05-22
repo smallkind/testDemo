@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>springcloud-demo</module>
     </modules>
 
 </project>
