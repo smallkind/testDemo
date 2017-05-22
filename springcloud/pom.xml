@@ -12,5 +12,8 @@
     <artifactId>spring-cloud</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>springcloud-demo</module>
+    </modules>
 
 </project>
