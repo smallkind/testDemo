@@ -15,6 +15,7 @@
     <modules>
         <module>eureka-server</module>
         <module>computer-service</module>
+        <module>eureka-ribbon</module>
     </modules>
 
 </project>
