@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @create 2017-05-23-09:03
  */
 //使用@FeignClient("compute-service")注解来绑定该接口对应compute-service服务
-@FeignClient("compute-service")
+@FeignClient(value = "compute-service", fallback = ComputeClientHystrix.class)
 public interface ComputeClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/add")
