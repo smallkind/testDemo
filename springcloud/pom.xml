@@ -16,6 +16,7 @@
         <module>eureka-server</module>
         <module>computer-service</module>
         <module>eureka-ribbon</module>
+        <module>eureka-feign</module>
     </modules>
 
 </project>
