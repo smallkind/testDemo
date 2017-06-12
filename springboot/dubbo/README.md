@@ -1,5 +1,5 @@
-# dubbo
-spring boot + dubbo demo
+# dubbo(点对点直连)
+(spring boot + dubbo) demo
 
 ### 模块
 

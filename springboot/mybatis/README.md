@@ -1,2 +1,2 @@
 # spring boot + mybatis
-spring boot 集成 mybatis
+(spring boot + mybatis) demo
