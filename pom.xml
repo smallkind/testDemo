@@ -10,7 +10,6 @@
     <modules>
         <module>springboot</module>
         <module>springcloud</module>
-        <module>spring</module>
     </modules>
     <packaging>pom</packaging>
 
