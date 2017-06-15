@@ -16,6 +16,7 @@
         <module>mybatis</module>
         <module>mutil-datasource</module>
         <module>dubbo</module>
+        <module>hello-starter</module>
     </modules>
 
 </project>
