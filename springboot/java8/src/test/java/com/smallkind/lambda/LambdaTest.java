@@ -10,6 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+
 /**
  * @author smallkind
  * @description
@@ -22,13 +25,28 @@ public class LambdaTest {
 
     @Test
     public void testHiddenFiles(){
-        System.out.println(Lambda.hiddenFiles("/Users/zhouxiang/Documents/").length);
+        System.out.println(Lambda.hiddenFiles("/Users/admin/Documents/").length);
     }
 
     @Test
     public void testHiddenFilesByJava8(){
-        System.out.println(Lambda.hiddenFilesByJava8("/Users/zhouxiang/Documents/").length);
+        System.out.println(Lambda.hiddenFilesByJava8("/Users/admin/Documents/").length);
     }
+
+    @Test
+    public void testRun(){
+      Lambda.process(()-> System.out.println("hello world!"));
+    }
+
+    @Test
+    public void testprocessFile() throws IOException{
+        String oneLine = Lambda.processFile((BufferedReader bufferedReader) -> bufferedReader.readLine());
+        System.out.println(oneLine);
+        String twoLine = Lambda.processFile((BufferedReader bufferedReader) -> bufferedReader.readLine() + "\n" + bufferedReader.readLine());
+        System.out.println(twoLine);
+    }
+
+
 
     @Test
     public void testList(){
