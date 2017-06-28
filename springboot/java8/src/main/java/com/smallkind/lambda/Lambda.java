@@ -1,7 +1,6 @@
 package com.smallkind.lambda;
 
-import java.io.File;
-import java.io.FileFilter;
+import java.io.*;
 
 /**
  * @author smallkind
@@ -29,4 +28,21 @@ public class Lambda {
         return new File(filePath).listFiles(File::isHidden);
     }
 
+    public static void process(Runnable r){
+        r.run();
+    }
+
+    /** 如何利用函数表达式传递Lambda start **/
+    @FunctionalInterface
+    interface BufferedReaderProcessor{
+        String proccess(BufferedReader bufferedReader) throws IOException;
+    }
+
+    public static String processFile(BufferedReaderProcessor bufferedReaderProcessor) throws IOException{
+        //Java7带资源的try语句，不需要显示的关闭资源
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("C:\\Users\\admin\\Desktop\\aa.txt"))) {
+            return bufferedReaderProcessor.proccess(bufferedReader);
+        }
+    }
+    /** 如何利用函数表达式传递Lambda end **/
 }

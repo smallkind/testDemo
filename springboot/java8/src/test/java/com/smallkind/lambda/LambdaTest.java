@@ -32,34 +32,17 @@ public class LambdaTest {
     }
 
     @Test
-    public void testListIsEmpty(){
-      process(()-> System.out.println("hello world!"));
-    }
-
-    public static void process(Runnable r){
-        r.run();
-    }
-
-    /** 如何利用函数表达式传递Lambda start **/
-    @FunctionalInterface
-    interface BufferedReaderProcessor{
-        String proccess(BufferedReader bufferedReader) throws IOException;
-    }
-
-    public static String processFile(BufferedReaderProcessor bufferedReaderProcessor) throws IOException{
-        //Java7带资源的try语句，不需要显示的关闭资源
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader("C:\\Users\\admin\\Desktop\\aa.txt"))) {
-            return bufferedReaderProcessor.proccess(bufferedReader);
-        }
+    public void testRun(){
+      Lambda.process(()-> System.out.println("hello world!"));
     }
 
     @Test
     public void testprocessFile() throws IOException{
-        String oneLine = processFile((BufferedReader bufferedReader) -> bufferedReader.readLine());
+        String oneLine = Lambda.processFile((BufferedReader bufferedReader) -> bufferedReader.readLine());
         System.out.println(oneLine);
-        String twoLine = processFile((BufferedReader bufferedReader) -> bufferedReader.readLine() + "\n" + bufferedReader.readLine());
+        String twoLine = Lambda.processFile((BufferedReader bufferedReader) -> bufferedReader.readLine() + "\n" + bufferedReader.readLine());
         System.out.println(twoLine);
     }
-    /** 如何利用函数表达式传递Lambda end **/
+
 
 }
