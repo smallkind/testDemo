@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author smallkind
@@ -44,7 +46,26 @@ public class LambdaTest {
         System.out.println(twoLine);
     }
 
+    @Test
+    public void testPredicate(){
+        List<String> noEmptyList = Lambda.filter(Arrays.asList(new String[]{"a","b","c","","","d"}),
+                (String s) -> !s.isEmpty());
+        System.out.println(noEmptyList.size());
+    }
 
+    @Test
+    public void testConsumer(){
+        Lambda.forEach(Arrays.asList(new String[]{"a","b","c","","","d"}),
+                (String s) -> System.out.println(s));
+    }
+
+    @Test
+    public void testFunction(){
+        List<Integer> list = Lambda.map(Arrays.asList(new String[]{"a","b","c","","","d"}),
+                (String s) -> s.length());
+        Lambda.forEach(list,
+                (Integer i) -> System.out.println(i));
+    }
 
     @Test
     public void testList(){
