@@ -1,14 +1,12 @@
 package com.smallkind.mapper;
 
-import com.smallkind.MybatisApplication;
 import com.smallkind.demo.entity.User;
 import com.smallkind.demo.mapper.UserMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +17,7 @@ import java.util.Date;
  * @create 2017-05-01-13:28
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = MybatisApplication.class)
+@SpringBootTest
 public class UserMapperTest {
 
     @Autowired

@@ -9,9 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author smallkind
@@ -81,6 +81,7 @@ public class LambdaTest {
         List<Integer> list1 = list.stream()
                 .filter(apple -> apple != null && apple.getWeight() != 0 )
                 .map(Apple::getWeight)
+                .distinct()
                 .collect(Collectors.toList());
         System.out.println("集合的大小为：" + list1.size());
         for(Integer integer : list1){
@@ -88,36 +89,16 @@ public class LambdaTest {
         }
     }
 
-    public static class Apple {
-        private int weight = 0;
-        private String color = "";
-
-        public Apple(int weight, String color){
-            this.weight = weight;
-            this.color = color;
-        }
-
-        public Integer getWeight() {
-            return weight;
-        }
-
-        public void setWeight(Integer weight) {
-            this.weight = weight;
-        }
-
-        public String getColor() {
-            return color;
-        }
-
-        public void setColor(String color) {
-            this.color = color;
-        }
-
-        public String toString() {
-            return "Apple{" +
-                    "color='" + color + '\'' +
-                    ", weight=" + weight +
-                    '}';
-        }
+    /**
+     * 特殊的void兼容规则：如果一个Lambda的主体是一个表达式，它就和一个返回void的函数描述符兼容
+     */
+    @Test
+    public void testVoid(){
+        List<String> list = Arrays.asList(new String[]{"a","b","c","","","d"});
+        Predicate<String> p = s -> list.add("aaaa");
+        Consumer<String> c = s -> list.add("bbbb");
+        System.out.println(p);
+        System.out.println(c);
     }
+
 }
