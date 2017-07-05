@@ -9,8 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
+import java.util.function.*;
 import java.util.stream.Collectors;
 
 /**
@@ -108,6 +107,23 @@ public class LambdaTest {
         Consumer<String> c = s -> list.add("bbbb");
         System.out.println(p);
         System.out.println(c);
+    }
+
+    @Test
+    public void testSort(){
+        List<String> list = Arrays.asList(new String[]{"a","b","D","X","Y","c"});
+        list.sort(String::compareToIgnoreCase);
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    public void testNew(){
+        Supplier<Apple> supplier = Apple::new;
+        System.out.println(supplier.get());
+        Function<Integer,Apple> function = Apple::new;
+        System.out.println(function.apply(110));
+        BiFunction<Integer,String,Apple> biFunction = Apple::new;
+        System.out.println(biFunction.apply(120,"red"));
     }
 
 }
