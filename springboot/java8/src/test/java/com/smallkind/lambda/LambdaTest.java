@@ -8,9 +8,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.*;
 import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparing;
 
 /**
  * @author smallkind
@@ -64,6 +67,19 @@ public class LambdaTest {
                 (String s) -> s.length());
         Lambda.forEach(list,
                 (Integer i) -> System.out.println(i));
+
+        /** 函数复合 等价于g(f(x)) result:4 **/
+        Function<Integer,Integer> f = x -> x + 1;
+        Function<Integer,Integer> g = x -> x * 2;
+        Function<Integer,Integer> h = f.andThen(g);
+        System.out.println(h.apply(1));
+
+        /** 函数复合 等价于f(g(x)) result:3 **/
+        Function<Integer,Integer> f1 = x -> x + 1;
+        Function<Integer,Integer> g1 = x -> x * 2;
+        Function<Integer,Integer> h1 = f1.compose(g1);
+        System.out.println(h1.apply(1));
+
     }
 
     @Test
@@ -75,8 +91,11 @@ public class LambdaTest {
                 new Apple(120, "blue"),
                 new Apple(140, "block"),
                 new Apple(190, "write"),
-                new Apple(120,"red"),
-                null);
+                new Apple(120,"red"));
+        list.sort(comparing(Apple::getWeight));
+        list.forEach(System.out::println);
+        list.sort(comparing(Apple::getWeight).reversed());
+        list.forEach(System.out::println);
         List<Integer> list1 = list.stream()
                 .filter(apple -> apple != null && apple.getWeight() != 0 )
                 .map(Apple::getWeight)
