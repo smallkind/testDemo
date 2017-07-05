@@ -87,6 +87,15 @@ public class LambdaTest {
         for(Integer integer : list1){
             System.out.println(integer);
         }
+        List<String> list2 = list.stream()
+                .filter(apple -> apple != null && apple.getWeight() != 0 )
+                .map((a) -> String.valueOf(a.getWeight()))
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println("集合的大小为：" + list1.size());
+        for(String string : list2){
+            System.out.println(string);
+        }
     }
 
     /**
