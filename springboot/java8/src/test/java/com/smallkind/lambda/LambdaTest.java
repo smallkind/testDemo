@@ -7,13 +7,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
 
 /**
  * @author smallkind
@@ -100,7 +100,7 @@ public class LambdaTest {
                 .filter(apple -> apple != null && apple.getWeight() != 0 )
                 .map(Apple::getWeight)
                 .distinct()
-                .collect(Collectors.toList());
+                .collect(toList());
         System.out.println("集合的大小为：" + list1.size());
         for(Integer integer : list1){
             System.out.println(integer);
@@ -109,7 +109,7 @@ public class LambdaTest {
                 .filter(apple -> apple != null && apple.getWeight() != 0 )
                 .map((a) -> String.valueOf(a.getWeight()))
                 .distinct()
-                .collect(Collectors.toList());
+                .collect(toList());
         System.out.println("集合的大小为：" + list1.size());
         for(String string : list2){
             System.out.println(string);
@@ -145,4 +145,73 @@ public class LambdaTest {
         System.out.println(biFunction.apply(120,"red"));
     }
 
+    @Test
+    public void testListToMap(){
+        List<Apple> list = Arrays.asList(
+                new Apple(80,"green"),
+                new Apple(155, "green"),
+                new Apple(120, "red"),
+                new Apple(140, "block"),
+                new Apple(190, "write"));
+        Map<String,Apple> map = list.stream()
+                .collect(Collectors.toMap(apple -> String.valueOf(apple.getWeight()),apple -> apple));
+        map.forEach((s, s2) -> System.out.println(s + " " + s2));
+    }
+
+    @Test
+    public void testA(){
+        List<A> list = Arrays.asList(
+                new A("80","90"),
+                new A("150", "160"),
+                new A("120", "130"),
+                new A("110", "150"),
+                new A("", null));
+        List<Integer> list1 = list.stream()
+                .flatMap(a ->
+                        Stream.of(a.getA(),a.getB()).filter(Strings::isNotEmpty).map(Integer::valueOf)
+                ).distinct()
+                .collect(Collectors.toList());
+        list1.forEach(System.out::println);
+    }
+
+    public static class A{
+
+        private String a;
+        private String b;
+
+        public A(String a, String b) {
+            this.a = a;
+            this.b = b;
+        }
+
+        public String getA() {
+            return a;
+        }
+
+        public void setA(String a) {
+            this.a = a;
+        }
+
+        public String getB() {
+            return b;
+        }
+
+        public void setB(String b) {
+            this.b = b;
+        }
+    }
+
+   static class Strings{
+        public static boolean isNotEmpty(String s){
+            return !isEmpty(s);
+        }
+
+        public static boolean isEmpty(String s){
+            if(s == null)
+                return true;
+            if(s.trim().equals(""))
+                return true;
+            return false;
+        }
+    }
 }
