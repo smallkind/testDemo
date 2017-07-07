@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -159,7 +160,7 @@ public class LambdaTest {
     }
 
     @Test
-    public void testA(){
+    public void testFlatMap(){
         List<A> list = Arrays.asList(
                 new A("80","90"),
                 new A("150", "160"),
@@ -168,50 +169,10 @@ public class LambdaTest {
                 new A("", null));
         List<Integer> list1 = list.stream()
                 .flatMap(a ->
-                        Stream.of(a.getA(),a.getB()).filter(Strings::isNotEmpty).map(Integer::valueOf)
+                        Stream.of(a.getA(),a.getB()).filter(StringUtils::isNotEmpty).map(Integer::valueOf)
                 ).distinct()
                 .collect(Collectors.toList());
         list1.forEach(System.out::println);
     }
 
-    public static class A{
-
-        private String a;
-        private String b;
-
-        public A(String a, String b) {
-            this.a = a;
-            this.b = b;
-        }
-
-        public String getA() {
-            return a;
-        }
-
-        public void setA(String a) {
-            this.a = a;
-        }
-
-        public String getB() {
-            return b;
-        }
-
-        public void setB(String b) {
-            this.b = b;
-        }
-    }
-
-   static class Strings{
-        public static boolean isNotEmpty(String s){
-            return !isEmpty(s);
-        }
-
-        public static boolean isEmpty(String s){
-            if(s == null)
-                return true;
-            if(s.trim().equals(""))
-                return true;
-            return false;
-        }
-    }
 }
