@@ -87,6 +87,7 @@ public class LambdaTest {
     public void testList(){
         List<Apple> list = Arrays.asList(
                 new Apple(80,"green"),
+                new Apple(80,"red"),
                 new Apple(155, "green"),
                 new Apple(120, "red"),
                 new Apple(120, "blue"),
@@ -162,6 +163,7 @@ public class LambdaTest {
     @Test
     public void testFlatMap(){
         List<A> list = Arrays.asList(
+                new A("80","90"),
                 new A("80","90"),
                 new A("150", "160"),
                 new A("120", "130"),
