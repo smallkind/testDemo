@@ -175,4 +175,24 @@ public class LambdaTest {
         list1.forEach(System.out::println);
     }
 
+    @Test
+    public void testListMap(){
+        List<A> list = Arrays.asList(
+                new A("80","90"),
+                new A("150", "160"),
+                new A("120", "130"),
+                new A("110", "150"));
+        List<Map<String,Object>> list1 = list
+                .stream()
+                .map(a ->
+                {
+                    Map<String,Object> map = new HashMap<>();
+                    map.put(a.getA(),a.getB());
+                    return map;
+                })
+                .distinct()
+                .collect(toList());
+        list1.forEach(stringObjectMap -> System.out.println(stringObjectMap.toString()));
+    }
+
 }
