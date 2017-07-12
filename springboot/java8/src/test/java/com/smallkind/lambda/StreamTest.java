@@ -160,12 +160,14 @@ public class StreamTest {
                 .sorted(comparing(Transaction::getValue))
                 .collect(toList());
         list.forEach(System.out::println);
+
         List<String> cities = transactions
                 .stream()
                 .map(transaction -> transaction.getTrader().getCity())
                 .distinct()
                 .collect(toList());
         cities.forEach(System.out::println);
+
         List<Trader> traders = transactions
                 .stream()
                 .map(Transaction::getTrader)
@@ -174,6 +176,7 @@ public class StreamTest {
                 .sorted(comparing(Trader::getName))
                 .collect(toList());
         traders.forEach(System.out::println);
+
         String traderStr = transactions
                 .stream()
                 .map(transaction -> transaction.getTrader().getName())
@@ -181,16 +184,19 @@ public class StreamTest {
                 .sorted()
                 .collect(joining());
         System.out.println(traderStr);
+
         transactions
                 .stream()
                 .filter(t -> "Cambridge".equals(t.getTrader().getCity()))
                 .map(Transaction::getValue)
                 .forEach(System.out::println);
+
         Optional<Integer> highestValue = transactions
                 .stream()
                 .map(Transaction::getValue)
                 .reduce(Integer::max);
         System.out.println(highestValue);
+
         Optional<Integer> minValue = transactions
                 .stream()
                 .map(Transaction::getValue)
