@@ -5,8 +5,11 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -149,4 +152,92 @@ public class StreamTest {
     );
 
 
+    @Test
+    public void testStream9(){
+        List<Transaction> list = transactions
+                .stream()
+                .filter(transaction -> transaction.getYear() == 2011)
+                .sorted(comparing(Transaction::getValue))
+                .collect(toList());
+        list.forEach(System.out::println);
+        List<String> cities = transactions
+                .stream()
+                .map(transaction -> transaction.getTrader().getCity())
+                .distinct()
+                .collect(toList());
+        cities.forEach(System.out::println);
+        List<Trader> traders = transactions
+                .stream()
+                .map(Transaction::getTrader)
+                .filter(trader -> trader.getCity().equals("Cambridge"))
+                .distinct()
+                .sorted(comparing(Trader::getName))
+                .collect(toList());
+        traders.forEach(System.out::println);
+        String traderStr = transactions
+                .stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted()
+                .collect(joining());
+        System.out.println(traderStr);
+        transactions
+                .stream()
+                .filter(t -> "Cambridge".equals(t.getTrader().getCity()))
+                .map(Transaction::getValue)
+                .forEach(System.out::println);
+        Optional<Integer> highestValue = transactions
+                .stream()
+                .map(Transaction::getValue)
+                .reduce(Integer::max);
+        System.out.println(highestValue);
+        Optional<Integer> minValue = transactions
+                .stream()
+                .map(Transaction::getValue)
+                .reduce(Integer::min);
+        System.out.println(minValue);
+    }
+
+    @Test
+    public void testStream10(){
+        int calories = menu
+                .stream()
+                .mapToInt(Dish::getCalories)
+                .sum();
+        System.out.println(calories);
+        OptionalInt maxCalories = menu
+                .stream()
+                .mapToInt(Dish::getCalories)
+                .max();
+        int max = maxCalories.orElse(-1);
+        System.out.println(max);
+        IntStream evenNumbers = IntStream.rangeClosed(1, 100) .filter(n -> n % 2 == 0);
+        System.out.println(evenNumbers.count());
+        IntStream evenNumbers1 = IntStream.range(1, 100) .filter(n -> n % 2 == 0);
+        System.out.println(evenNumbers1.count());
+        java.util.stream.Stream<int[]> pythagoreanTriples = IntStream
+                .rangeClosed(1, 100)
+                .boxed()
+                .flatMap(a -> IntStream
+                                .rangeClosed(a, 100)
+                                .filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
+                                .mapToObj(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
+                );
+        pythagoreanTriples.limit(5)
+                .forEach(t ->
+                        System.out.println(t[0] + ", " + t[1] + ", " + t[2]));
+        java.util.stream.Stream<double[]> pythagoreanTriples2;
+        pythagoreanTriples2 = IntStream
+                .rangeClosed(1, 100)
+                .boxed()
+                .flatMap(a ->
+                    IntStream.rangeClosed(a, 100)
+                            .mapToObj(b -> new double[]{a,b,Math.sqrt(a*a+b*b)})
+                            .filter(t -> t[2] % 1 == 0)
+                );
+        pythagoreanTriples2.limit(5)
+                .forEach(t ->
+                        System.out.println(t[0] + ", " + t[1] + ", " + t[2]));
+
+    }
 }
