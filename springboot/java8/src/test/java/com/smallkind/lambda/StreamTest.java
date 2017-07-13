@@ -317,5 +317,28 @@ public class StreamTest {
         System.out.println(intSummaryStatistics);
     }
 
+    @Test
+    public void testStream13(){
+        List<Apple> list = Arrays.asList(
+                new Apple(80,"green"),
+                new Apple(80,"red"),
+                new Apple(155, "green"),
+                new Apple(120, "red"),
+                new Apple(120, "blue"),
+                new Apple(140, "block"),
+                new Apple(190, "write"),
+                new Apple(120,"red"));
+
+        List<Apple> apples = list
+                .stream()
+                .map(apple -> {
+                    if(apple.getColor().equals("red")) {
+                        apple.setWeight(100);
+                    }
+                    return apple;
+                })
+                .collect(toList());
+        apples.forEach(System.out::println);
+    }
 
 }
