@@ -25,8 +25,8 @@ public class PdfUtil {
     protected static final Logger logger = LoggerFactory.getLogger(PdfUtil.class);
 
     public static void main(String[] args) throws Exception{
-        String filepath = "/Users/zhouxiang/Downloads/a.docx";
-        String outpath = "/Users/zhouxiang/Downloads/a.pdf";
+        String filepath = "/Users/aa/Downloads/a.docx";
+        String outpath = "/Users/aa/Downloads/a.pdf";
 
         InputStream source = new FileInputStream(filepath);
         OutputStream target = new FileOutputStream(outpath);
