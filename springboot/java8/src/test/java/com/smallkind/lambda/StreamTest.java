@@ -3,6 +3,7 @@ package com.smallkind.lambda;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.Comparator.comparing;
@@ -339,6 +340,21 @@ public class StreamTest {
                 })
                 .collect(toList());
         apples.forEach(System.out::println);
+    }
+
+    @Test
+    public void testStream14(){
+        String shortMenu = menu.stream().map(Dish::getName).collect(joining(", "));
+        System.out.println(shortMenu);
+
+        int totalCalories = menu.stream().collect(reducing(
+                0, Dish::getCalories, (i, j) -> i + j));
+        System.out.println(totalCalories);
+
+        Optional<Dish> mostCalorieDish =
+                menu.stream().collect(reducing(
+                        (d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2));
+        System.out.println(mostCalorieDish);
     }
 
 }
