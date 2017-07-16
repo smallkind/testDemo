@@ -1,4 +1,4 @@
-package com.smallkind.lambda;
+package com.smallkind.java8.lambda;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,9 +1,8 @@
-package com.smallkind.lambda;
+package com.smallkind.java8.lambda;
 
 import org.junit.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.Comparator.comparing;

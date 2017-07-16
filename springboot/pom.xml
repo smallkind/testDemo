@@ -17,7 +17,6 @@
         <module>mutil-datasource</module>
         <module>dubbo</module>
         <module>hello-starter</module>
-        <module>java8</module>
     </modules>
 
 </project>

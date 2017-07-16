@@ -11,6 +11,7 @@
         <module>springboot</module>
         <module>springcloud</module>
         <module>thrift</module>
+        <module>java</module>
     </modules>
     <packaging>pom</packaging>
 
