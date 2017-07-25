@@ -2,11 +2,13 @@ package com.smallkind.demo.mapper;
 
 import com.smallkind.demo.entity.User;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author xiang.zhou
  * @create 2017-05-01-13:21
  */
+@Repository
 @Mapper
 public interface UserMapper {
 
