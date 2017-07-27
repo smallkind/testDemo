@@ -1,5 +1,6 @@
 package com.smallkind.java8.lambda;
 
+import com.smallkind.java8.stream.PrimeNumbersCollector;
 import org.junit.Test;
 
 import java.util.*;
@@ -481,5 +482,12 @@ public class StreamTest {
             System.out.println(dish);
         });
 
+        Map<Boolean, List<Integer>> primMap = IntStream.rangeClosed(2,20).boxed()
+                .collect(new PrimeNumbersCollector());
+        primMap.forEach((aBoolean, integers) -> {
+            System.out.println(aBoolean);
+            System.out.println(integers);
+        });
     }
+
 }
