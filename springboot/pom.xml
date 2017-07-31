@@ -17,6 +17,7 @@
         <module>mutil-datasource</module>
         <module>dubbo</module>
         <module>hello-starter</module>
+        <module>spring-event-listener</module>
     </modules>
 
 </project>
