@@ -197,6 +197,10 @@ public class LambdaTest {
                 .distinct()
                 .collect(toList());
         list1.forEach(stringObjectMap -> System.out.println(stringObjectMap.toString()));
+
+        List<Short> list2 = Arrays.asList(new Short[]{1,2,3,4,1,2,3,4});
+        List<Short> list3 = list2.stream().distinct().collect(toList());
+        list3.forEach(System.out::println);
     }
 
 }
